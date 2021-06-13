@@ -11,7 +11,7 @@ chrome.storage.sync.get("TIME", ({ TIME }) => {
 setTime.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   
-  if (parseInt(document.getElementById('TIMEVAL').value)) {
+  if (parseInt(document.getElementById('TIMEVAL').value) || document.getElementById('TIMEVAL').value == 0) {
     var TIME = document.getElementById('TIMEVAL').value;
   }
   else {
