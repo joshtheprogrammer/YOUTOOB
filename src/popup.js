@@ -1,11 +1,7 @@
-// Initialize butotn with users's prefered color
+// Initialize
 let TIMEVAL = document.getElementById('TIMEVAL');
 
-chrome.storage.sync.get("TIME", ({ TIME }) => {
-  TIMEVAL.value = TIME;
-});
-
-// When the button is clicked, inject setPageBackgroundColor into current page
+//button is clicked
 setTime.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   
@@ -18,8 +14,7 @@ setTime.addEventListener("click", async () => {
   });
 });
 
-// The body of this function will be execuetd as a content script inside the
-// current page
+// script
 function setVideoTime() {
   try {
     chrome.storage.sync.get("TIME", ({ TIME }) => {
