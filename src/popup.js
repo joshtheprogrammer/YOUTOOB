@@ -3,10 +3,8 @@ let TIMEVAL = document.getElementById('TIMEVAL');
 
 TIMEVAL.placeholder = Math.floor(Math.random() * 43200);
 
-TIMEVAL.addEventListener("click" , async () => {
-  chrome.storage.sync.get("TIME", ({ TIME }) => {
-    TIMEVAL.value = TIME;
-  });
+chrome.storage.sync.get("TIME", ({ TIME }) => {
+  TIMEVAL.value = TIME;
 });
 
 //button is clicked
