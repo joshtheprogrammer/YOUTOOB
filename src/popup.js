@@ -6,6 +6,7 @@ setTime.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   
   let TIME = document.getElementById('TIMEVAL').value;
+  
   chrome.storage.sync.set({TIME}, function () { 
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
