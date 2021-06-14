@@ -1,22 +1,30 @@
 // Initialize
 let TIMEVAL = document.getElementById('TIMEVAL');
 
-TIMEVAL.placeholder = Math.floor(Math.random() * 43200);
-
 chrome.storage.sync.get("TIME", ({ TIME }) => {
   TIMEVAL.value = TIME;
+});
+
+TIMEVAL.addEventListener('input', async () => {
+  TIMEVAL.placeholder = Math.floor(Math.random() * 43200);
+});
+
+TIMEVAL.addEventListener('click', async () => {
+  TIMEVAL.placeholder = Math.floor(Math.random() * 43200);
 });
 
 //button is clicked
 setTime.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   
-  if (parseInt(document.getElementById('TIMEVAL').value) || document.getElementById('TIMEVAL').value == 0) {
+  if (parseInt(document.getElementById('TIMEVAL').value) || document.getElementById('TIMEVAL').value == '0') {
     var TIME = document.getElementById('TIMEVAL').value;
   }
   else {
     var TIME = document.getElementById('TIMEVAL').placeholder;
   }
+
+  TIMEVAL.value = TIME;
 
   chrome.storage.sync.set({TIME}, function () { 
     chrome.scripting.executeScript({
