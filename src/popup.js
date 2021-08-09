@@ -64,9 +64,6 @@ function setVideoTime() {
 function getVideoDuration() {
   if (window.location.href.includes("youtube.com/watch")) {
     var r = Math.floor(Math.random() * (parseInt(window.document.getElementsByClassName("ytp-bound-time-right")[0].innerHTML.split(":")[0]*60)+parseInt(window.document.getElementsByClassName("ytp-bound-time-right")[0].innerHTML.split(":")[1])+1));
+    return r;
   }
-  else {
-    var r = Math.floor(Math.random() * 100);
-  }
-  return r;
 }
