@@ -12,7 +12,6 @@ TIMEVAL.addEventListener('input', async () => {
     target: { tabId: tab.id },
     function: getVideoDuration,
   }, function(r) {
-    console.log(r);
     for (const val of r) {
       TIMEVAL.placeholder = val.result;
     }
