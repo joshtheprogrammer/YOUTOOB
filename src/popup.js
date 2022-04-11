@@ -52,11 +52,35 @@ setTime.addEventListener("click", async () => {
   });
 });
 
+getTime.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: getVideoTime,
+  });
+});
+
+function getVideoTime() {
+  if (window.location.href.includes("youtube.com/watch")) {
+    if (window.document.getElementsByClassName("html5-video-player ytp-transparent ytp-exp-bottom-control-flexbox ytp-larger-tap-buttons ytp-exp-ppp-update ytp-hide-info-bar ytp-autonav-endscreen-cancelled-state playing-mode ytp-autohide")[0] == null) {
+      var r0 = parseInt(window.document.getElementsByClassName("ytp-time-current")[0].innerHTML.split(":")[0])*60;
+      var r1 = parseInt(window.document.getElementsByClassName("ytp-time-current")[0].innerHTML.split(":")[1]);
+      var r = r0+r1;
+      alert(r);
+    }
+    else {
+      alert("Pause video..");
+    }
+  }
+}
+
 // script
 function setVideoTime() {
   chrome.storage.sync.get("TIME", ({ TIME }) => {
     if (window.location.href.includes("youtube.com/watch")) {
       window.location.href = window.location.href.split("&t=")[0] + `&t=${TIME}`;
+      
     }
   });
 }
